@@ -61,43 +61,45 @@ export default function ToolsAndSkillsScroll() {
   return (
     <section
       ref={containerRef}
-      className="relative h-[300vh] w-full bg-[#111111]"
+      className="relative h-[250vh] sm:h-[300vh] w-full bg-[#111111]"
     >
-      {/* Sticky Screen-Locked Container */}
-      <div className="sticky top-0 h-screen w-full bg-[#111111] text-[#F5F5F2] flex flex-col justify-between px-6 sm:px-12 md:px-16 py-12 md:py-16 overflow-hidden border-t border-white/10">
+      {/* Sticky Screen-Locked Container (Responsive h-[100svh] untuk mobile browsers) */}
+      <div className="sticky top-0 h-[100svh] w-full bg-[#111111] text-[#F5F5F2] flex flex-col justify-between px-4 sm:px-10 md:px-16 py-6 sm:py-10 md:py-14 overflow-hidden border-t border-white/10">
         
         {/* Top Minimal Bar */}
-        <div className="flex justify-between items-center border-b border-white/10 pb-5">
-          <div className="flex items-center gap-3">
-            <span className="font-mono text-xs uppercase tracking-[0.25em] text-[#F5F5F2]/40">
-              [ 03 / TECHNICAL CRAFT ]
+        <div className="flex justify-between items-center border-b border-white/10 pb-3 sm:pb-5">
+          <div className="flex items-center gap-2 sm:gap-3">
+            <span className="font-mono text-[10px] sm:text-xs uppercase tracking-[0.2em] text-[#F5F5F2]/40">
+              [ 03 / CAPABILITIES ]
             </span>
-            <span className="text-[#F5F5F2]/30">•</span>
-            <span className="font-mono text-xs uppercase tracking-[0.2em] text-[#F5F5F2]/60">
+            <span className="hidden sm:inline text-[#F5F5F2]/30">•</span>
+            <span className="hidden sm:inline font-mono text-[10px] sm:text-xs uppercase tracking-[0.2em] text-[#F5F5F2]/60">
               SCROLL-DRIVEN INDEX
             </span>
           </div>
 
           {/* Stepped Progress Indicator */}
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-1.5 sm:gap-2">
             {SKILL_CATEGORIES.map((cat, idx) => (
-              <div
+              <button
                 key={cat.id}
-                className={`h-1.5 transition-all duration-300 rounded-full ${
+                onClick={() => setActiveIndex(idx)}
+                aria-label={`Jump to ${cat.title}`}
+                className={`h-1.5 transition-all duration-300 rounded-full cursor-pointer ${
                   idx === activeIndex
-                    ? 'w-8 bg-white'
-                    : 'w-2 bg-white/20'
+                    ? 'w-6 sm:w-8 bg-white'
+                    : 'w-2 bg-white/20 hover:bg-white/50'
                 }`}
               />
             ))}
           </div>
         </div>
 
-        {/* Center Main Split: Vertical List + Dynamic Detail Panel */}
-        <div className="my-auto grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-center">
+        {/* Center Main Split: Vertical List (Desktop) / Horizontal Tabs (Mobile) + Detail Panel */}
+        <div className="my-auto grid grid-cols-1 lg:grid-cols-12 gap-5 sm:gap-8 lg:gap-16 items-center">
           
-          {/* Kolom Kiri: Baris Judul Kategori Besar yang Menyorot Bergantian */}
-          <div className="lg:col-span-7 flex flex-col gap-6 md:gap-8">
+          {/* Kolom Kiri: Baris Judul Kategori */}
+          <div className="lg:col-span-7 flex flex-row lg:flex-col justify-between lg:justify-start gap-2 sm:gap-4 md:gap-8 overflow-x-auto pb-1 lg:pb-0">
             {SKILL_CATEGORIES.map((item, index) => {
               const isActive = index === activeIndex;
               const Icon = item.icon;
@@ -106,31 +108,30 @@ export default function ToolsAndSkillsScroll() {
                 <div
                   key={item.id}
                   onClick={() => setActiveIndex(index)}
-                  className={`group flex items-center gap-4 sm:gap-6 cursor-pointer select-none transition-all duration-500 ${
-                    isActive ? 'opacity-100 translate-x-2' : 'opacity-25 hover:opacity-50'
+                  className={`group flex items-center gap-2 sm:gap-4 lg:gap-6 cursor-pointer select-none transition-all duration-300 p-2 lg:p-0 rounded-lg lg:rounded-none shrink-0 ${
+                    isActive
+                      ? 'opacity-100 lg:translate-x-2 bg-white/5 lg:bg-transparent'
+                      : 'opacity-35 hover:opacity-60'
                   }`}
                 >
-                  {/* Micro Index */}
-                  <span className="font-mono text-sm sm:text-base tracking-widest text-[#F5F5F2]/50">
+                  <span className="font-mono text-xs sm:text-sm lg:text-base tracking-widest text-[#F5F5F2]/50">
                     {item.id}
                   </span>
 
-                  {/* Title */}
-                  <h3 className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-normal tracking-tighter uppercase leading-none">
+                  <h3 className="text-sm sm:text-2xl md:text-4xl lg:text-6xl font-normal tracking-tighter uppercase whitespace-nowrap lg:whitespace-normal">
                     {item.title}
                   </h3>
 
-                  {/* Dynamic Rotating Icon Badge (Only visible when active) */}
                   <AnimatePresence>
                     {isActive && (
                       <motion.div
-                        initial={{ scale: 0, rotate: -30, opacity: 0 }}
-                        animate={{ scale: 1, rotate: 0, opacity: 1 }}
-                        exit={{ scale: 0, rotate: 30, opacity: 0 }}
+                        initial={{ scale: 0, opacity: 0 }}
+                        animate={{ scale: 1, opacity: 1 }}
+                        exit={{ scale: 0, opacity: 0 }}
                         transition={{ type: 'spring', damping: 20, stiffness: 300 }}
-                        className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-[#F5F5F2] text-[#111111] flex items-center justify-center shrink-0 ml-2 shadow-lg"
+                        className="w-6 h-6 sm:w-8 sm:h-8 lg:w-12 lg:h-12 rounded-full bg-[#F5F5F2] text-[#111111] flex items-center justify-center shrink-0 ml-1 sm:ml-2 shadow-lg"
                       >
-                        <Icon className="w-5 h-5 sm:w-6 sm:h-6" />
+                        <Icon className="w-3.5 h-3.5 sm:w-4 sm:h-4 lg:w-6 lg:h-6" />
                       </motion.div>
                     )}
                   </AnimatePresence>
@@ -139,43 +140,43 @@ export default function ToolsAndSkillsScroll() {
             })}
           </div>
 
-          {/* Kolom Kanan: Kotak Detail & Tool Tags yang Berganti Mengikuti Scroll */}
-          <div className="lg:col-span-5 bg-white/[0.03] border border-white/10 rounded-3xl p-6 sm:p-10 min-h-[300px] flex flex-col justify-between">
+          {/* Kolom Kanan: Kotak Detail & Tool Tags */}
+          <div className="lg:col-span-5 bg-white/[0.03] border border-white/10 rounded-2xl sm:rounded-3xl p-4 sm:p-7 md:p-9 min-h-[240px] sm:min-h-[290px] flex flex-col justify-between">
             <AnimatePresence mode="wait">
               <motion.div
                 key={activeCategory.id}
-                initial={{ opacity: 0, y: 16 }}
+                initial={{ opacity: 0, y: 12 }}
                 animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -16 }}
-                transition={{ duration: 0.35, ease: 'easeOut' }}
+                exit={{ opacity: 0, y: -12 }}
+                transition={{ duration: 0.3, ease: 'easeOut' }}
                 className="flex flex-col justify-between h-full"
               >
                 <div>
-                  <div className="flex justify-between items-center font-mono text-[10px] uppercase tracking-[0.25em] text-[#F5F5F2]/40 mb-3">
+                  <div className="flex justify-between items-center font-mono text-[9px] sm:text-[10px] uppercase tracking-[0.2em] text-[#F5F5F2]/40 mb-2 sm:mb-3">
                     <span>STACK MATRIX</span>
                     <span>{activeCategory.metric}</span>
                   </div>
 
-                  <h4 className="text-xl sm:text-2xl font-normal tracking-tight text-white mb-4">
+                  <h4 className="text-base sm:text-xl lg:text-2xl font-normal tracking-tight text-white mb-2 sm:mb-4">
                     {activeCategory.headline}
                   </h4>
 
-                  <p className="text-sm leading-relaxed text-[#F5F5F2]/75 font-light mb-8">
+                  <p className="text-xs sm:text-sm leading-relaxed text-[#F5F5F2]/75 font-light mb-4 sm:mb-6 line-clamp-3">
                     {activeCategory.description}
                   </p>
                 </div>
 
                 <div>
-                  <span className="font-mono text-[10px] uppercase tracking-[0.2em] text-[#F5F5F2]/40 block mb-3">
+                  <span className="font-mono text-[9px] sm:text-[10px] uppercase tracking-[0.2em] text-[#F5F5F2]/40 block mb-2 sm:mb-3">
                     [ CORE TECHNOLOGIES ]
                   </span>
                   
                   {/* Tool Pill Tags */}
-                  <div className="flex flex-wrap gap-1.5">
+                  <div className="flex flex-wrap gap-1 sm:gap-1.5">
                     {activeCategory.tools.map((tool) => (
                       <span
                         key={tool}
-                        className="font-mono text-[11px] uppercase tracking-wider px-3 py-1.5 rounded-full bg-white/5 border border-white/15 text-[#F5F5F2]"
+                        className="font-mono text-[10px] sm:text-[11px] uppercase tracking-wider px-2 sm:px-3 py-1 sm:py-1.5 rounded-full bg-white/5 border border-white/15 text-[#F5F5F2]"
                       >
                         {tool}
                       </span>
@@ -188,10 +189,10 @@ export default function ToolsAndSkillsScroll() {
         </div>
 
         {/* Bottom Status Navigation */}
-        <div className="flex justify-between items-center text-xs font-mono uppercase tracking-[0.2em] text-[#F5F5F2]/40 pt-5 border-t border-white/10">
-          <div className="flex items-center gap-2">
-            <span>SCROLL TO SHIFT CATEGORY</span>
-            <ArrowRight className="w-3.5 h-3.5 animate-pulse" />
+        <div className="flex justify-between items-center text-[10px] sm:text-xs font-mono uppercase tracking-[0.2em] text-[#F5F5F2]/40 pt-3 sm:pt-4 border-t border-white/10">
+          <div className="flex items-center gap-1.5 sm:gap-2">
+            <span>SCROLL OR TAP TO SHIFT</span>
+            <ArrowRight className="w-3 h-3 sm:w-3.5 sm:h-3.5 animate-pulse" />
           </div>
           <div>
             ACTIVE: [{activeCategory.title}]
