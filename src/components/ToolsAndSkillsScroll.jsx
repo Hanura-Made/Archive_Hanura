@@ -96,10 +96,10 @@ export default function ToolsAndSkillsScroll() {
         </div>
 
         {/* Center Main Split: Vertical List (Desktop) / Horizontal Tabs (Mobile) + Detail Panel */}
-        <div className="my-auto grid grid-cols-1 lg:grid-cols-12 gap-5 sm:gap-8 lg:gap-16 items-center">
+        <div className="my-auto flex flex-col lg:flex-row gap-5 sm:gap-8 lg:gap-16 items-start lg:items-center w-full">
           
           {/* Kolom Kiri: Baris Judul Kategori */}
-          <div className="lg:col-span-7 flex flex-row lg:flex-col justify-between lg:justify-start gap-2 sm:gap-4 md:gap-8 overflow-x-auto pb-1 lg:pb-0">
+          <div className="flex flex-row lg:flex-col justify-between lg:justify-start gap-2 sm:gap-4 md:gap-8 overflow-x-auto pb-1 lg:pb-0 w-full lg:w-7/12 shrink-0">
             {SKILL_CATEGORIES.map((item, index) => {
               const isActive = index === activeIndex;
               const Icon = item.icon;
@@ -141,7 +141,7 @@ export default function ToolsAndSkillsScroll() {
           </div>
 
           {/* Kolom Kanan: Kotak Detail & Tool Tags */}
-          <div className="lg:col-span-5 bg-white/[0.03] border border-white/10 rounded-2xl sm:rounded-3xl p-4 sm:p-7 md:p-9 min-h-[240px] sm:min-h-[290px] flex flex-col justify-between">
+          <div className="w-full lg:w-5/12 bg-white/[0.03] border border-white/10 rounded-2xl sm:rounded-3xl p-4 sm:p-7 md:p-9 min-h-[240px] sm:min-h-[290px] flex flex-col justify-between">
             <AnimatePresence mode="wait">
               <motion.div
                 key={activeCategory.id}

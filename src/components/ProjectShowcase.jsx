@@ -102,8 +102,8 @@ export default function ProjectShowcase({ onHoverItem, onLeaveItem }) {
         </div>
       </div>
 
-      {/* Floating / Sticky Filter Navigation Pill */}
-      <div className="sticky top-4 sm:top-6 z-[60] flex justify-center w-full py-2.5 sm:py-4 pointer-events-none px-3 sm:px-4">
+      {/* Floating / Sticky Filter Navigation Pill — Hidden on mobile, visible sm+ */}
+      <div className="sticky top-4 sm:top-6 z-[60] hidden sm:flex justify-center w-full py-2.5 sm:py-4 pointer-events-none px-3 sm:px-4">
         <div className="pointer-events-auto bg-[#111111] text-[#F5F5F2] border border-[#111111]/30 rounded-full p-1 sm:p-1.5 shadow-[0_10px_30px_rgba(0,0,0,0.25)] flex flex-wrap justify-center items-center gap-1 max-w-[95vw]">
           {CATEGORIES.map((cat) => {
             const isActive = activeFilter === cat.id;
@@ -169,10 +169,10 @@ export default function ProjectShowcase({ onHoverItem, onLeaveItem }) {
                     </div>
                   </div>
 
-                  {/* Body Konten Kartu (Responsive: Stack di mobile, 2 kolom di desktop) */}
-                  <div className="p-4 sm:p-8 md:p-10 flex flex-col lg:grid lg:grid-cols-12 gap-4 sm:gap-6 lg:gap-12 flex-1 justify-between overflow-y-auto lg:overflow-hidden">
-                    {/* Visual Preview (Di mobile di atas agar mata langsung menangkap gambar) */}
-                    <div className="w-full lg:col-span-6 relative rounded-xl sm:rounded-2xl overflow-hidden bg-black/10 h-36 sm:h-52 lg:h-full max-h-[380px] shrink-0 order-first lg:order-last">
+                  {/* Body Konten Kartu (Responsive: Stack di mobile, Row di desktop) */}
+                  <div className="p-4 sm:p-8 md:p-10 flex flex-col lg:flex-row gap-4 sm:gap-6 lg:gap-12 flex-1 justify-between overflow-y-auto lg:overflow-hidden">
+                    {/* Visual Preview */}
+                    <div className="w-full lg:w-1/2 relative rounded-xl sm:rounded-2xl overflow-hidden bg-black/10 h-36 sm:h-52 lg:h-full max-h-[380px] shrink-0 order-first lg:order-last">
                       <img
                         src={item.image}
                         alt={item.title}
@@ -186,7 +186,7 @@ export default function ProjectShowcase({ onHoverItem, onLeaveItem }) {
                     </div>
 
                     {/* Sisi Kiri: Teks & Metadata */}
-                    <div className="w-full lg:col-span-6 flex flex-col justify-between py-1 sm:py-2">
+                    <div className="w-full lg:w-1/2 flex flex-col justify-between py-1 sm:py-2">
                       <div>
                         <span className={`font-mono text-[10px] sm:text-xs uppercase tracking-[0.22em] ${theme.subText} block mb-1.5 sm:mb-3`}>
                           {item.categoryLabel}
