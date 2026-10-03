@@ -10,10 +10,10 @@ export default function Footer() {
             [ INQUIRIES ]
           </p>
           <a
-            href="mailto:hello@hanura.com"
+            href="mailto:hanuramade@gmail.com"
             className="text-xl sm:text-2xl md:text-4xl font-normal hover:opacity-50 transition-opacity underline underline-offset-8 decoration-1 break-all"
           >
-            hello@hanura.com
+            hanuramade@gmail.com
           </a>
         </div>
 

@@ -152,7 +152,7 @@ export default function ProjectShowcase({ onHoverItem, onLeaveItem }) {
                   onClick={() => handleSelectProject(item)}
                   onMouseEnter={() => onHoverItem?.(item.categoryKey)}
                   onMouseLeave={onLeaveItem}
-                  className={`pointer-events-auto w-full max-w-7xl h-[82vh] sm:h-[80vh] rounded-2xl sm:rounded-3xl ${theme.bg} ${theme.text} ${theme.border} border shadow-[0_-10px_35px_rgba(0,0,0,0.15)] overflow-hidden cursor-pointer select-none flex flex-col justify-between transition-transform duration-300 hover:-translate-y-1`}
+                  className={`pointer-events-auto w-full max-w-7xl h-[82vh] sm:h-[80vh] rounded-2xl sm:rounded-3xl ${theme.bg} ${theme.text} ${theme.border} border shadow-[0_-10px_35px_rgba(0,0,0,0.15)] overflow-hidden cursor-pointer select-none flex flex-col transition-transform duration-300 hover:-translate-y-1`}
                 >
                   {/* Folder Tab Header */}
                   <div className={`px-4 sm:px-10 py-3 sm:py-4 border-b ${theme.border} flex justify-between items-center text-[11px] sm:text-xs font-mono uppercase tracking-[0.2em]`}>
@@ -169,14 +169,14 @@ export default function ProjectShowcase({ onHoverItem, onLeaveItem }) {
                     </div>
                   </div>
 
-                  {/* Body Konten Kartu (Responsive: Stack di mobile, Row di desktop) */}
-                  <div className="p-4 sm:p-8 md:p-10 flex flex-col lg:flex-row gap-4 sm:gap-6 lg:gap-12 flex-1 justify-between overflow-y-auto lg:overflow-hidden">
-                    {/* Visual Preview */}
-                    <div className="w-full lg:w-1/2 relative rounded-xl sm:rounded-2xl overflow-hidden bg-black/10 h-36 sm:h-52 lg:h-full max-h-[380px] shrink-0 order-first lg:order-last">
+                  {/* Body Konten Kartu (Mobile: stack rapat, Desktop: row) */}
+                  <div className="p-4 sm:p-8 md:p-10 flex flex-col lg:flex-row gap-4 sm:gap-6 lg:gap-12 lg:flex-1 justify-start lg:justify-between overflow-y-auto lg:overflow-hidden">
+                    {/* Visual Preview — aspect-video on mobile, fill on desktop */}
+                    <div className="w-full lg:w-1/2 relative rounded-xl sm:rounded-2xl overflow-hidden bg-black/10 aspect-video lg:aspect-auto lg:h-full shrink-0 order-first lg:order-last">
                       <img
                         src={item.image}
                         alt={item.title}
-                        className="w-full h-full object-cover will-change-transform group-hover:scale-105 transition-transform duration-700 ease-out"
+                        className="w-full h-full object-contain will-change-transform group-hover:scale-105 transition-transform duration-700 ease-out"
                         loading="lazy"
                       />
                       <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent opacity-60 pointer-events-none" />
@@ -186,7 +186,7 @@ export default function ProjectShowcase({ onHoverItem, onLeaveItem }) {
                     </div>
 
                     {/* Sisi Kiri: Teks & Metadata */}
-                    <div className="w-full lg:w-1/2 flex flex-col justify-between py-1 sm:py-2">
+                    <div className="w-full lg:w-1/2 flex flex-col justify-start lg:justify-between py-1 sm:py-2">
                       <div>
                         <span className={`font-mono text-[10px] sm:text-xs uppercase tracking-[0.22em] ${theme.subText} block mb-1.5 sm:mb-3`}>
                           {item.categoryLabel}
