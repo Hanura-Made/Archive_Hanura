@@ -35,7 +35,7 @@ export const ARCHIVE_ITEMS = [
     demo: "https://hanuraporto90.vercel.app/",
     span: "col-span-12 md:col-span-7",
     aspect: "aspect-[16/11]",
-    image: "projects/izin-karyawan/mockup.png"
+    image: "/projects/izin-karyawan/mockup.png"
   },
   {
     id: "02",
@@ -50,7 +50,7 @@ export const ARCHIVE_ITEMS = [
     demo: null,
     span: "col-span-12 md:col-span-5 md:pt-28",
     aspect: "aspect-[4/5]",
-    image: "projects/eye-vit-classification/Mockup4.png"
+    image: "/projects/eye-vit-classification/Mockup4.png"
   },
   {
     id: "03",
@@ -65,7 +65,7 @@ export const ARCHIVE_ITEMS = [
     demo: null,
     span: "col-span-12 md:col-span-7 md:pt-24",
     aspect: "aspect-[16/11]",
-    image: "projects/coffee-classification/mockup_4.png"
+    image: "/projects/coffee-classification/mockup_4.png"
   },
   {
   id: "04",
@@ -80,6 +80,6 @@ export const ARCHIVE_ITEMS = [
   demo: "https://penida-go.vercel.app/", 
   span: "col-span-12 md:col-span-6 md:pt-24",
   aspect: "aspect-[16/10]", 
-  image: "projects/PenidaGO/MockupPenida.png"
+  image: "/projects/PenidaGO/MockupPenida.png"
 }
 ];
